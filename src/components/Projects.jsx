@@ -22,7 +22,7 @@ const Projects = () => {
       tech: ['React', 'JavaScript'], 
       icon: '🎮',
       githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
-      demoLink: 'https://vishal200728.github.io/vishal-mehra-portfolio/tik%20tak/tik-tak-game/index.html'
+      demoLink: ''
     },
     { 
       title: 'Rock Paper Scissors', 
@@ -31,8 +31,8 @@ const Projects = () => {
       tech: ['React', 'CSS'], 
       icon: '🪨',
       githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
-      demoLink: '#'
-    },
+      demoLink: ""
+       },
     { 
       title: 'Student Dashboard', 
       category: 'Full Stack', 
