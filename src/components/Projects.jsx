@@ -12,7 +12,7 @@ const Projects = () => {
       description: 'Full-featured e-commerce with cart, auth, and payments.', 
       tech: ['React', 'Node.js', 'MongoDB'], 
       icon: '🛒',
-      githubCode: 'https://github.com/Vishal200728/websites.git',
+      githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
       demoLink: '#'
     },
     { 
@@ -21,8 +21,8 @@ const Projects = () => {
       description: 'Classic game with AI and two-player modes.', 
       tech: ['React', 'JavaScript'], 
       icon: '🎮',
-      githubCode: 'https://github.com/Vishal200728/tic-tac-toe',
-      demoLink: '#'
+      githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
+      demoLink: 'https://vishal200728.github.io/vishal-mehra-portfolio/tik%20tak/tik-tak-game/index.html'
     },
     { 
       title: 'Rock Paper Scissors', 
@@ -30,7 +30,7 @@ const Projects = () => {
       description: 'Classic game with smart AI logic.', 
       tech: ['React', 'CSS'], 
       icon: '🪨',
-      githubCode: 'https://github.com/Vishal200728/rock-paper-scissors',
+      githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
       demoLink: '#'
     },
     { 
@@ -39,7 +39,7 @@ const Projects = () => {
       description: 'Educational platform for marks and grades.', 
       tech: ['React', 'Node.js', 'MongoDB'], 
       icon: '📚',
-      githubCode: 'https://github.com/Vishal200728/student-dashboard',
+      githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
       demoLink: '#'
     },
     { 
@@ -48,7 +48,7 @@ const Projects = () => {
       description: 'Secure auth with JWT and password hashing.', 
       tech: ['Node.js', 'Express', 'MongoDB'], 
       icon: '🔐',
-      githubCode: 'https://github.com/Vishal200728/auth-system',
+      githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
       demoLink: '#'
     },
     { 
@@ -57,7 +57,7 @@ const Projects = () => {
       description: 'Short links with analytics.', 
       tech: ['React', 'Node.js', 'MongoDB'], 
       icon: '🔗',
-      githubCode: 'https://github.com/Vishal200728/url-shortener',
+      githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
       demoLink: '#'
     }
   ];
