@@ -22,7 +22,7 @@ const Projects = () => {
       tech: ['React', 'JavaScript'], 
       icon: '🎮',
       githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
-      demoLink: ''
+      demoLink: 'https://tic-tac-toe-ten-flax-69.vercel.app'
     },
     { 
       title: 'Rock Paper Scissors', 
@@ -31,7 +31,7 @@ const Projects = () => {
       tech: ['React', 'CSS'], 
       icon: '🪨',
       githubCode: 'https://github.com/Vishal200728/vishal-mehra-portfolio.git',
-      demoLink: ""
+      demoLink: "#"
        },
     { 
       title: 'Student Dashboard', 

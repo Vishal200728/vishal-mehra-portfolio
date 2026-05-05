@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 const Square = ({ value, onSquareClick, isWinning, disabled }) => {
@@ -12,7 +13,7 @@ const Square = ({ value, onSquareClick, isWinning, disabled }) => {
   } else if (value === 'X') {
     textColor = "text-sky-200";
   } else if (value === 'O') {
-    textColor = "text-amber-200";
+    // textColor = "text-amber-200";
   }
   
   return (
