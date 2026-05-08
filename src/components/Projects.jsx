@@ -22,8 +22,8 @@ const Projects = () => {
       description: 'Real-time weather updates, 5-day forecast, temperature, humidity, wind speed, and "feels like" using OpenWeatherMap API.',
       tech: ['React', 'API', 'Axios', 'Tailwind CSS'], 
       icon: '🌤️',
-      githubCode: 'https://github.com/Vishal200728/weather-app',
-      demoLink: '#',
+      githubCode: 'https://github.com/Vishal200728/tik-tak-game.git',
+      demoLink: 'https://tik-tak-game.vercel.app',
       apiUsed: 'OpenWeatherMap API'
     },
     { 
