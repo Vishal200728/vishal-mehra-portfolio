@@ -51,7 +51,7 @@ const Projects = () => {
       tech: ['React', 'Node.js', 'Express', 'MongoDB'], 
       icon: '🔗',
       githubCode: 'https://github.com/Vishal200728/url-shortener',
-      demoLink: '#'
+      demoLink: 'https://url-shorter-virid.vercel.app'
     },
     { 
   title: 'Image Converter', 
@@ -60,7 +60,7 @@ const Projects = () => {
   tech: ['React', 'Vite', 'Tailwind CSS', 'Browser API'], 
   icon: '🖼️',
   githubCode: 'https://github.com/Vishal200728/image-converter',
-  demoLink: 'https://weather-project-woad-three.vercel.app/'
+  demoLink: 'https://weather-project-woad-three.vercel.app'
 },
     { 
       title: 'Tic Tac Toe Game', 
