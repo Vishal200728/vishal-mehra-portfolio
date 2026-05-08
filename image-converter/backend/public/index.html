@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend Test</title>
+</head>
+<body>
+    <h1>Backend is Working! ✅</h1>
+    <p>Use frontend React app for image conversion</p>
+    <button onclick="testAPI()">Test API</button>
+    <script>
+        async function testAPI() {
+            const res = await fetch('/api/test');
+            const data = await res.json();
+            alert(JSON.stringify(data));
+        }
+    </script>
+</body>
+</html>
