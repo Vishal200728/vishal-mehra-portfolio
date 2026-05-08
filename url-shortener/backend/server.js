@@ -9,8 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 const URLS_FILE = path.join(__dirname, 'urls.json');
+const BASE_URL = process.env.BASE_URL || 'https://vishal-mehra-portfolio-1.onrender.com';
 
-// Load URLs from file
 const loadUrls = () => {
   if (fs.existsSync(URLS_FILE)) {
     const data = fs.readFileSync(URLS_FILE, 'utf8');
@@ -19,40 +19,40 @@ const loadUrls = () => {
   return {};
 };
 
-// Save URLs to file
 const saveUrls = (urls) => {
   fs.writeFileSync(URLS_FILE, JSON.stringify(urls, null, 2));
 };
 
-// Create short URL
 app.post('/api/shorten', (req, res) => {
   try {
     const { originalUrl } = req.body;
-    
+
     if (!originalUrl) {
       return res.status(400).json({ error: 'URL is required' });
     }
-    
-    // Validate URL
+
     try {
-      new URL(originalUrl);
+      const parsedUrl = new URL(originalUrl);
+      if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+        return res.status(400).json({ error: 'Only http/https URLs are allowed' });
+      }
     } catch {
       return res.status(400).json({ error: 'Invalid URL format. Include http:// or https://' });
     }
-    
+
     const urls = loadUrls();
     const shortCode = nanoid(6);
-    const shortUrl = `http://localhost:3002/${shortCode}`;
-    
+    const shortUrl = `${BASE_URL}/${shortCode}`;
+
     urls[shortCode] = {
       originalUrl,
       shortUrl,
       createdAt: new Date().toISOString(),
       clicks: 0
     };
-    
+
     saveUrls(urls);
-    
+
     res.json({
       success: true,
       shortUrl,
@@ -64,17 +64,16 @@ app.post('/api/shorten', (req, res) => {
   }
 });
 
-// Redirect to original URL
 app.get('/:shortCode', (req, res) => {
   const { shortCode } = req.params;
   const urls = loadUrls();
-  
+
   if (urls[shortCode]) {
     urls[shortCode].clicks++;
     saveUrls(urls);
     return res.redirect(urls[shortCode].originalUrl);
   }
-  
+
   res.status(404).send(`
     <!DOCTYPE html>
     <html>
@@ -106,7 +105,6 @@ app.get('/:shortCode', (req, res) => {
   `);
 });
 
-// Get all URLs
 app.get('/api/urls', (req, res) => {
   const urls = loadUrls();
   res.json(Object.values(urls).reverse());
