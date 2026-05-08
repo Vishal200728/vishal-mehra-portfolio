@@ -23,7 +23,7 @@ const Projects = () => {
       tech: ['React', 'API', 'Axios', 'Tailwind CSS'], 
       icon: '🌤️',
       githubCode: 'https://github.com/Vishal200728/tik-tak-game.git',
-      demoLink: 'https://vercel.com/vishals-projects-2fd85682/weatherproject1api',
+      demoLink: 'https://tik-tak-game.vercel.app',
       apiUsed: 'OpenWeatherMap API'
     },
     { 
