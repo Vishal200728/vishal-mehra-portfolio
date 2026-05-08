@@ -68,7 +68,7 @@ function App() {
     formData.append('size', size);
     
     try {
-      const res = await fetch('http://localhost:3001/api/convert', {
+     const res = await fetch('https://vishal-mehra-portfolio.onrender.com/api/convert', {
         method: 'POST',
         body: formData
       });
