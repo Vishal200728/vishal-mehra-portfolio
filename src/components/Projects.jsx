@@ -51,7 +51,7 @@ const Projects = () => {
       tech: ['React', 'Node.js', 'Express', 'MongoDB'], 
       icon: '🔗',
       githubCode: 'https://github.com/Vishal200728/url-shortener',
-      demoLink: 'https://url-shorter-virid.vercel.app'
+      demoLink: 'https://vishal-mehra-portfolio-213u.vercel.app'
     },
     { 
   title: 'Image Converter', 
