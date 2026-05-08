@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
+// ✅ Backend API URL (Render)
+const API_URL = 'https://vishal-mehra-portfolio-1.onrender.com';
+
 function App() {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
@@ -15,15 +18,12 @@ function App() {
 
   const fetchUrls = async () => {
     try {
-      const response = await axios.get('/api/urls');
-      
-      // ✅ FIX 1: Ensure response.data is an array before using .slice()
+      const response = await axios.get(`${API_URL}/api/urls`);
       const urls = Array.isArray(response.data) ? response.data : [];
       setRecentUrls(urls.slice(0, 5));
-      
     } catch (error) {
       console.error('Error fetching URLs:', error);
-      setRecentUrls([]); // ✅ FIX 2: Set empty array on error
+      setRecentUrls([]);
       toast.error('Failed to fetch recent URLs');
     }
   };
@@ -46,12 +46,9 @@ function App() {
     setLoading(true);
     
     try {
-      const response = await axios.post('/api/shorten', { originalUrl: url });
-      
-      // ✅ FIX 3: Safely extract shortUrl
+      const response = await axios.post(`${API_URL}/api/shorten`, { originalUrl: url });
       const newShortUrl = response.data?.shortUrl || response.data?.data?.shortUrl;
       setShortUrl(newShortUrl);
-      
       toast.success('URL shortened successfully! 🎉');
       fetchUrls();
       setUrl('');
@@ -63,8 +60,7 @@ function App() {
   };
 
   const copyToClipboard = async () => {
-    if (!shortUrl) return; // ✅ FIX 4: Don't copy if no URL
-    
+    if (!shortUrl) return;
     try {
       await navigator.clipboard.writeText(shortUrl);
       setCopied(true);
@@ -228,13 +224,12 @@ function App() {
           </div>
         </div>
 
-        {/* Recent URLs - ✅ FIXED: Always show even if empty */}
+        {/* Recent URLs */}
         <div className="mt-12 max-w-4xl w-full animate-slide-up">
           <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
             <span>🕒</span> Recent Shortened URLs
           </h2>
           
-          {/* ✅ FIX 5: Show message if no URLs */}
           {recentUrls.length === 0 ? (
             <div className="backdrop-blur-lg bg-white/5 rounded-lg p-8 text-center">
               <p className="text-gray-400">No URLs shortened yet. Try shortening one above! 🚀</p>
