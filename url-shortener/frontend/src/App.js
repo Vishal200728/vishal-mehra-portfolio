@@ -16,9 +16,15 @@ function App() {
   const fetchUrls = async () => {
     try {
       const response = await axios.get('/api/urls');
-      setRecentUrls(response.data.slice(0, 5));
+      
+      // ✅ FIX 1: Ensure response.data is an array before using .slice()
+      const urls = Array.isArray(response.data) ? response.data : [];
+      setRecentUrls(urls.slice(0, 5));
+      
     } catch (error) {
       console.error('Error fetching URLs:', error);
+      setRecentUrls([]); // ✅ FIX 2: Set empty array on error
+      toast.error('Failed to fetch recent URLs');
     }
   };
 
@@ -41,7 +47,11 @@ function App() {
     
     try {
       const response = await axios.post('/api/shorten', { originalUrl: url });
-      setShortUrl(response.data.shortUrl);
+      
+      // ✅ FIX 3: Safely extract shortUrl
+      const newShortUrl = response.data?.shortUrl || response.data?.data?.shortUrl;
+      setShortUrl(newShortUrl);
+      
       toast.success('URL shortened successfully! 🎉');
       fetchUrls();
       setUrl('');
@@ -53,6 +63,8 @@ function App() {
   };
 
   const copyToClipboard = async () => {
+    if (!shortUrl) return; // ✅ FIX 4: Don't copy if no URL
+    
     try {
       await navigator.clipboard.writeText(shortUrl);
       setCopied(true);
@@ -107,7 +119,7 @@ function App() {
           <div className="inline-block p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6 shadow-2xl animate-float">
             <span className="text-5xl">🔗</span>
           </div>
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-400 bg-clip-text text-transparent animate-gradient neon-text">
+          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-400 bg-clip-text text-transparent animate-gradient">
             URL Shortener
           </h1>
           <p className="text-gray-300 mt-4 text-lg max-w-2xl mx-auto">
@@ -117,8 +129,8 @@ function App() {
 
         {/* Main Card */}
         <div className="w-full max-w-4xl animate-slide-up">
-          <div className="glass rounded-2xl p-1 shadow-2xl">
-            <div className="bg-gray-900 bg-opacity-50 rounded-2xl p-8">
+          <div className="backdrop-blur-lg bg-white/5 rounded-2xl p-1 shadow-2xl">
+            <div className="bg-gray-900/50 rounded-2xl p-8">
               
               {/* Input Form */}
               <form onSubmit={handleShorten} className="mb-8">
@@ -148,7 +160,7 @@ function App() {
                       </>
                     ) : (
                       <>
-                        <span>🔗</span> Shorten URL
+                        <span>⚡</span> Shorten URL
                       </>
                     )}
                   </button>
@@ -191,7 +203,7 @@ function App() {
 
         {/* Features */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full animate-fadeIn">
-          <div className="glass rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group">
+          <div className="backdrop-blur-lg bg-white/5 rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group">
             <div className="inline-block p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-4 group-hover:rotate-6 transition-transform">
               <span className="text-2xl">⚡</span>
             </div>
@@ -199,7 +211,7 @@ function App() {
             <p className="text-gray-400 text-sm">Instant URL shortening with 99.9% uptime</p>
           </div>
           
-          <div className="glass rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group">
+          <div className="backdrop-blur-lg bg-white/5 rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group">
             <div className="inline-block p-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg mb-4 group-hover:rotate-6 transition-transform">
               <span className="text-2xl">🛡️</span>
             </div>
@@ -207,7 +219,7 @@ function App() {
             <p className="text-gray-400 text-sm">All your links are safe and secure</p>
           </div>
           
-          <div className="glass rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group">
+          <div className="backdrop-blur-lg bg-white/5 rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 group">
             <div className="inline-block p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-4 group-hover:rotate-6 transition-transform">
               <span className="text-2xl">📊</span>
             </div>
@@ -216,29 +228,38 @@ function App() {
           </div>
         </div>
 
-        {/* Recent URLs */}
-        {recentUrls.length > 0 && (
-          <div className="mt-12 max-w-4xl w-full animate-slide-up">
-            <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-              <span>🕒</span> Recent Shortened URLs
-            </h2>
+        {/* Recent URLs - ✅ FIXED: Always show even if empty */}
+        <div className="mt-12 max-w-4xl w-full animate-slide-up">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>🕒</span> Recent Shortened URLs
+          </h2>
+          
+          {/* ✅ FIX 5: Show message if no URLs */}
+          {recentUrls.length === 0 ? (
+            <div className="backdrop-blur-lg bg-white/5 rounded-lg p-8 text-center">
+              <p className="text-gray-400">No URLs shortened yet. Try shortening one above! 🚀</p>
+            </div>
+          ) : (
             <div className="space-y-3">
               {recentUrls.map((item, index) => (
-                <div key={index} className="glass rounded-lg p-4 hover:bg-gray-800 transition-all duration-300">
+                <div key={item._id || index} className="backdrop-blur-lg bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-all duration-300">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
                     <div className="flex-1 min-w-0">
                       <p className="text-purple-400 font-mono text-sm break-all">
                         {item.shortUrl}
                       </p>
-                      <p className="text-gray-500 text-xs truncate">
+                      <p className="text-gray-500 text-xs truncate mt-1">
                         {item.originalUrl}
                       </p>
                     </div>
                     <div className="flex gap-2">
                       <button
                         onClick={() => {
-                          navigator.clipboard.writeText(item.shortUrl);
-                          toast.success('Copied!');
+                          const copyUrl = item.shortUrl;
+                          if (copyUrl) {
+                            navigator.clipboard.writeText(copyUrl);
+                            toast.success('Copied!');
+                          }
                         }}
                         className="px-3 py-2 bg-gray-700 text-white rounded-lg hover:bg-purple-600 transition-colors"
                       >
@@ -257,14 +278,50 @@ function App() {
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Footer */}
         <div className="mt-16 text-center text-gray-400 text-sm">
           <p>© 2024 URL Shortener | Shorten your links instantly</p>
         </div>
       </div>
+
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes slide-down {
+          from { opacity: 0; transform: translateY(-30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slide-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scale-up {
+          from { opacity: 0; transform: scale(0.9); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes gradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-slide-down { animation: slide-down 0.6s ease-out; }
+        .animate-slide-up { animation: slide-up 0.6s ease-out; }
+        .animate-scale-up { animation: scale-up 0.4s ease-out; }
+        .animate-fadeIn { animation: fadeIn 0.8s ease-out; }
+        .animate-gradient { background-size: 200% auto; animation: gradient 3s linear infinite; }
+        .delay-1000 { animation-delay: 1s; }
+        .delay-2000 { animation-delay: 2s; }
+      `}</style>
     </div>
   );
 }
