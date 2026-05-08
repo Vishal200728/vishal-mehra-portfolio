@@ -60,7 +60,7 @@ const Projects = () => {
   tech: ['React', 'Vite', 'Tailwind CSS', 'Browser API'], 
   icon: '🖼️',
   githubCode: 'https://github.com/Vishal200728/image-converter',
-  demoLink: 'https://image-converter.vercel.app'
+  demoLink: 'https://weather-project-woad-three.vercel.app/'
 },
     { 
       title: 'Tic Tac Toe Game', 
