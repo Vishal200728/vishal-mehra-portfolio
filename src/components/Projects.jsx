@@ -35,24 +35,15 @@ const Projects = () => {
       githubCode: 'https://github.com/Vishal200728/ecommerce-platform',
       demoLink: '#'
     },
-    { 
-      title: 'Student Dashboard System', 
-      category: 'Full Stack', 
-      description: 'Comprehensive educational platform where students can check marks, teachers can edit grades, and admins can oversee all user accounts.',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB'], 
-      icon: '📚',
-      githubCode: 'https://github.com/Vishal200728/student-dashboard',
-      demoLink: '#'
-    },
-    { 
-      title: 'Authentication System', 
-      category: 'Backend', 
-      description: 'Secure full-stack authentication system with user registration, login, JWT tokens, password hashing, and session management.',
-      tech: ['Node.js', 'Express', 'MongoDB'], 
-      icon: '🔐',
-      githubCode: 'https://github.com/Vishal200728/auth-system',
-      demoLink: '#'
-    },
+   { 
+  title: 'Student Management System', 
+  category: 'Full Stack', 
+  description: 'Complete educational platform with role-based login (Student/Teacher/Admin). Students can check marks, teachers can edit grades, and admins can oversee all user accounts. Includes secure JWT authentication.', 
+  tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'], 
+  icon: '🎓',
+  githubCode: 'https://github.com/Vishal200728/student-management-system',
+  demoLink: '#'
+},
     { 
       title: 'URL Shortener', 
       category: 'Backend', 
@@ -62,6 +53,15 @@ const Projects = () => {
       githubCode: 'https://github.com/Vishal200728/url-shortener',
       demoLink: '#'
     },
+    { 
+  title: 'Image Converter', 
+  category: 'Full Stack', 
+  description: 'Convert images to different formats (PNG, JPG, WEBP). Resize, compress, and preview images before download.', 
+  tech: ['React', 'Vite', 'Tailwind CSS', 'Browser API'], 
+  icon: '🖼️',
+  githubCode: 'https://github.com/Vishal200728/image-converter',
+  demoLink: 'https://image-converter.vercel.app'
+},
     { 
       title: 'Tic Tac Toe Game', 
       category: 'Game', 
