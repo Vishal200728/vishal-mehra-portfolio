@@ -36,3 +36,96 @@
     transform: rotate(360deg);
   }
 }
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet (768px se 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .App-header {
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .App-logo {
+    height: 30vmin;
+  }
+  
+  .App-header {
+    font-size: calc(12px + 2vmin);
+  }
+}
+
+/* Laptop / Small Desktop (1025px se 1440px) */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .App-header {
+    min-height: 100vh;
+  }
+  
+  .App-logo {
+    height: 35vmin;
+  }
+  
+  .App-header {
+    font-size: calc(14px + 1vmin);
+  }
+}
+
+/* Large Desktop (1441px and above) */
+@media screen and (min-width: 1441px) {
+  .App-header {
+    min-height: 100vh;
+  }
+  
+  .App-logo {
+    height: 25vmin;
+  }
+  
+  .App-header {
+    font-size: calc(16px + 1vmin);
+  }
+}
+
+/* Mobile Portrait (up to 480px) */
+@media screen and (max-width: 480px) {
+  .App-header {
+    padding: 20px;
+  }
+  
+  .App-logo {
+    height: 50vmin;
+  }
+  
+  .App-header {
+    font-size: calc(8px + 3vmin);
+  }
+}
+
+/* Mobile Landscape (481px to 767px) */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .App-header {
+    padding: 15px;
+  }
+  
+  .App-logo {
+    height: 45vmin;
+  }
+  
+  .App-header {
+    font-size: calc(10px + 2.5vmin);
+  }
+}
+
+/* Extra small devices (320px and below) */
+@media screen and (max-width: 320px) {
+  .App-header {
+    padding: 10px;
+  }
+  
+  .App-logo {
+    height: 60vmin;
+  }
+  
+  .App-header {
+    font-size: calc(6px + 3vmin);
+  }
+}
