@@ -13,7 +13,7 @@ const Projects = () => {
       tech: ['React', 'API', 'Tailwind CSS', 'Axios'], 
       icon: '🍔',
       githubCode: 'https://github.com/Vishal200728/food-recipe-app',
-      demoLink: '#',
+      demoLink: 'https://vishal-mehra-portfolio-4hkb.vercel.app',
       apiUsed: 'The Meal DB API'
     },
     { 
