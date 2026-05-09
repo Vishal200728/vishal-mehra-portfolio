@@ -33,7 +33,7 @@ const Projects = () => {
       tech: ['React', 'Node.js', 'Express', 'MongoDB'], 
       icon: '🛒',
       githubCode: 'https://github.com/Vishal200728/ecommerce-platform',
-      demoLink: '#'
+      demoLink: 'https://ecommerce-siteapp.vercel.app'
     },
    { 
   title: 'Student Management System', 
