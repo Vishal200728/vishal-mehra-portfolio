@@ -36,9 +36,27 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Follow Us</h4>
             <div className="flex gap-4">
-              <a href="#" className="text-2xl hover:text-orange-400 transition">📘</a>
-              <a href="#" className="text-2xl hover:text-orange-400 transition">📷</a>
-              <a href="#" className="text-2xl hover:text-orange-400 transition">🐦</a>
+              <button 
+                onClick={() => window.open('https://facebook.com', '_blank')}
+                className="text-2xl hover:text-orange-400 transition"
+                aria-label="Facebook"
+              >
+                📘
+              </button>
+              <button 
+                onClick={() => window.open('https://instagram.com', '_blank')}
+                className="text-2xl hover:text-orange-400 transition"
+                aria-label="Instagram"
+              >
+                📷
+              </button>
+              <button 
+                onClick={() => window.open('https://twitter.com', '_blank')}
+                className="text-2xl hover:text-orange-400 transition"
+                aria-label="Twitter"
+              >
+                🐦
+              </button>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import { RecipeContext } from '../context/RecipeContext';
 import Hero from '../components/Hero';
 import SearchBar from '../components/SearchBar';
@@ -8,11 +8,15 @@ import MealCard from '../components/MealCard';
 const Home = () => {
   const { meals, loading, fetchRandomMeal, searchQuery } = useContext(RecipeContext);
 
-  useEffect(() => {
+  const loadInitialMeals = useCallback(() => {
     if (!searchQuery && meals.length === 0) {
       fetchRandomMeal();
     }
-  }, []);
+  }, [searchQuery, meals.length, fetchRandomMeal]);
+
+  useEffect(() => {
+    loadInitialMeals();
+  }, [loadInitialMeals]);
 
   return (
     <div>

@@ -1,6 +1,6 @@
 // API Configuration
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
-const TEST_KEY = '1';
+// const TEST_KEY = '1';  // Commented out - not used
 
 export const API = {
   // Search meal by name
@@ -39,9 +39,5 @@ export const API = {
 
 // Image URLs
 export const IMAGES = {
-  mealThumbnail: (id, size = 'medium') => {
-    // This will be handled dynamically
-    return '';
-  },
   ingredientIcon: (name) => `https://www.themealdb.com/images/ingredients/${name}-small.png`,
 };

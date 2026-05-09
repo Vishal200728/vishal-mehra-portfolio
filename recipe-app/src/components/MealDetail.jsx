@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API } from '../api';
@@ -9,11 +9,7 @@ const MealDetail = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('ingredients');
 
-  useEffect(() => {
-    fetchMealDetails();
-  }, [id]);
-
-  const fetchMealDetails = async () => {
+  const fetchMealDetails = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(API.lookupById(id));
@@ -23,10 +19,15 @@ const MealDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchMealDetails();
+  }, [fetchMealDetails]);
 
   const getIngredients = () => {
     const ingredients = [];
+    if (!meal) return ingredients;
     for (let i = 1; i <= 20; i++) {
       const ingredient = meal[`strIngredient${i}`];
       const measure = meal[`strMeasure${i}`];

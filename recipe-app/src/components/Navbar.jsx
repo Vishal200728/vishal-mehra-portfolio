@@ -49,7 +49,7 @@ const Navbar = () => {
             <Link to="/categories" className="text-white hover:text-yellow-200 transition">Categories</Link>
             <Link to="/favorites" className="relative text-white hover:text-yellow-200 transition">
               Favorites
-              {favorites.length > 0 && (
+              {favorites && favorites.length > 0 && (
                 <span className="absolute -top-2 -right-4 bg-yellow-400 text-orange-600 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {favorites.length}
                 </span>
