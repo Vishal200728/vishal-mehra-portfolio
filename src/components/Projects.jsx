@@ -42,7 +42,7 @@ const Projects = () => {
   tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'], 
   icon: '🎓',
   githubCode: 'https://github.com/Vishal200728/student-management-system',
-  demoLink: '#'
+  demoLink: 'https://vishal-mehra-portfolio-la7g.vercel.app/login'
 },
     { 
       title: 'URL Shortener', 
