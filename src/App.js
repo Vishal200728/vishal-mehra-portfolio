@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from 'react';
+import React, { useRef } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -8,27 +8,26 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-const App = () => {
+function App() {
+  const contactRef = useRef(null);
+
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    contactRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="font-sans antialiased overflow-x-hidden">
+    <div className="App">
       <Navigation scrollToContact={scrollToContact} />
-      <main className="pt-16">
-        <Hero scrollToContact={scrollToContact} />
-        <About />
-        <Skills />
-        <Projects />
+      <Hero scrollToContact={scrollToContact} />
+      <About />
+      <Skills />
+      <Projects />
+      <div ref={contactRef}>
         <Contact />
-        <Footer />
-      </main>
+      </div>
+      <Footer />
     </div>
   );
-};
+}
 
 export default App;
